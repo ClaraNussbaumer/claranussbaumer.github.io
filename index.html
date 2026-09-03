@@ -1,0 +1,954 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Academic website of Clara Nussbaumer">
+  <title>Clara Nussbaumer</title>
+  <style>
+    :root {
+      --navy: #152a3a;
+      --blue: #28708f;
+      --pale: #eef5f6;
+      --paper: #fbfaf7;
+      --text: #24333c;
+      --muted: #60717b;
+      --line: #d9e2e4;
+      --width: 1050px;
+      --sidebar-width: clamp(20rem, 27vw, 25rem);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 88% 7%, #dceef3 0, transparent 25rem),
+        var(--paper);
+      font-family: "Aptos Light", Aptos, "Segoe UI Light", "Segoe UI", sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    a { color: var(--blue); }
+
+    .container {
+      width: min(calc(100% - 2.5rem), var(--width));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      width: calc(100% - var(--sidebar-width));
+      border-bottom: 1px solid var(--line);
+      background: rgba(251, 250, 247, 0.94);
+      backdrop-filter: blur(10px);
+    }
+
+    nav {
+      min-height: 4.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .name {
+      color: var(--navy);
+      font-family: "Aptos Light", Aptos, "Segoe UI Light", "Segoe UI", sans-serif;
+      font-size: 1.25rem;
+      font-weight: 300;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      font-size: 0.94rem;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus { color: var(--blue); }
+
+    .header-showcase {
+      display: block;
+      width: calc(100vw - var(--sidebar-width));
+      max-width: none;
+      height: clamp(15rem, 27.5vw, 23rem);
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .header-photo {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center center;
+    }
+
+    .profile-card {
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 20;
+      width: var(--sidebar-width);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: clamp(2rem, 4vw, 4.5rem);
+      color: white;
+      background: #132d4b;
+      overflow-y: auto;
+    }
+
+    .profile-card h2 {
+      margin-bottom: 1.25rem;
+      color: white;
+      font-size: clamp(1.8rem, 2.3vw, 2.6rem);
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    .profile-card .portrait {
+      width: min(9rem, 55%);
+      margin: 0 auto 1.25rem;
+      border-color: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.22);
+    }
+
+    .profile-role,
+    .profile-institution {
+      margin: 0;
+      color: #d9e9f2;
+      line-height: 1.45;
+      text-align: center;
+    }
+
+    .profile-role { margin-bottom: 1.5rem; }
+
+    .profile-institution a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      color: white;
+      text-underline-offset: 0.2rem;
+    }
+
+    .profile-links {
+      width: 100%;
+      display: grid;
+      gap: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .profile-links a {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.7rem 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      font-size: 0.95rem;
+      text-decoration: none;
+    }
+
+    .profile-links a:hover,
+    .profile-links a:focus {
+      color: white;
+      padding-left: 0.5rem;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .link-icon {
+      width: 1.15rem;
+      height: 1.15rem;
+      flex: 0 0 1.15rem;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .hero {
+      min-height: 72vh;
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: center;
+      gap: 4rem;
+      padding: 6rem 0;
+    }
+
+    main { width: calc(100% - var(--sidebar-width)); }
+
+    footer {
+      width: calc(100% - var(--sidebar-width));
+      margin: 0;
+      padding-inline: max(1.25rem, calc((100% - var(--width)) / 2));
+    }
+
+    .label {
+      margin: 0 0 0.8rem;
+      color: var(--blue);
+      font-size: 0.78rem;
+      font-weight: bold;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      color: var(--navy);
+      font-family: "Aptos Light", Aptos, "Segoe UI Light", "Segoe UI", sans-serif;
+      font-weight: 300;
+      line-height: 1.2;
+    }
+
+    h1 {
+      margin: 0 0 1.25rem;
+      font-size: clamp(2.8rem, 7vw, 5.35rem);
+      font-weight: 300;
+      letter-spacing: -0.045em;
+    }
+
+    h2 {
+      margin: 0 0 2rem;
+      font-size: clamp(2.1rem, 5vw, 3.5rem);
+      font-weight: 300;
+    }
+
+    h3 { margin: 0 0 0.6rem; font-size: 1.35rem; }
+
+    .intro {
+      max-width: 40rem;
+      margin: 0 0 1.75rem;
+      color: var(--muted);
+      font-size: 1.18rem;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 0.7rem 1.15rem;
+      border-radius: 999px;
+      color: white;
+      background: var(--navy);
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .button:hover,
+    .button:focus { background: var(--blue); }
+
+    .portrait {
+      aspect-ratio: 1;
+      width: 88%;
+      display: block;
+      justify-self: center;
+      border-radius: 50%;
+      border: 0.5rem solid #d7eaf0;
+      object-fit: cover;
+      object-position: center 15%;
+      box-shadow: 0 1rem 3rem rgba(21, 42, 58, 0.14);
+    }
+
+    section {
+      padding: 6rem 0;
+      border-top: 1px solid var(--line);
+      scroll-margin-top: 4.5rem;
+    }
+
+    section:nth-of-type(odd) { background: rgba(238, 245, 246, 0.58); }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: 0.4fr 1.6fr;
+      gap: 4rem;
+    }
+
+    .section-number {
+      color: var(--blue);
+      font-size: 0.8rem;
+      font-weight: bold;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .lead {
+      margin-top: 0;
+      color: var(--navy);
+      font-family: "Aptos Light", Aptos, "Segoe UI Light", "Segoe UI", sans-serif;
+      font-size: clamp(1.45rem, 3vw, 2.15rem);
+      line-height: 1.4;
+    }
+
+    .research-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .research-card {
+      padding: 1.6rem;
+      border: 1px solid #c8dde3;
+      border-radius: 0.8rem;
+      background: linear-gradient(145deg, #ffffff, #edf6f8);
+    }
+
+    .research-card p { margin-bottom: 0; color: var(--muted); }
+
+    .research-card.featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: minmax(12rem, 18rem) minmax(0, 1fr);
+      align-items: stretch;
+      gap: 1.75rem;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      overflow: visible;
+    }
+
+    .research-content h3 {
+      margin: 0;
+      margin-bottom: 1rem;
+      font-size: 1.6rem;
+    }
+
+    .research-gallery {
+      display: block;
+      align-self: start;
+      height: 33.333%;
+      overflow: hidden;
+      border-radius: 0.8rem;
+    }
+
+    .research-photo {
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      display: block;
+      margin: 0;
+      object-fit: cover;
+    }
+
+    .research-visual { height: 100%; margin: 0; overflow: hidden; }
+
+    .research-content {
+      padding: 1.6rem;
+      border: 1px solid #c8dde3;
+      border-radius: 0.8rem;
+      background: linear-gradient(145deg, #ffffff, #edf6f8);
+    }
+    .research-content p + p { margin-top: 1rem; }
+
+    .research-card.with-image {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(12rem, 18rem);
+      align-items: stretch;
+      gap: 1.75rem;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      overflow: visible;
+    }
+
+    .research-card.text-project {
+      grid-column: 1 / -1;
+    }
+
+    .project-photo {
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      display: block;
+      object-fit: contain;
+    }
+
+    .project-visual {
+      align-self: start;
+      overflow: hidden;
+      border-radius: 0.8rem;
+    }
+
+    .project-links {
+      display: grid;
+      gap: 0.45rem;
+      margin-top: 1.25rem;
+    }
+
+    .project-links a { font-size: 0.92rem; }
+
+    .publication {
+      display: grid;
+      grid-template-columns: 5rem 1fr;
+      gap: 1.5rem;
+      padding: 0.65rem 0;
+      scroll-margin-top: 5.5rem;
+    }
+
+    .publication:last-child { border-bottom: 1px solid var(--line); }
+    .publication p { margin: 0.2rem 0; }
+    .publication strong {
+      font-family: Aptos, "Segoe UI", sans-serif;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .year { color: var(--blue); font-weight: bold; }
+    .year-divider {
+      margin: 2.75rem 0 0;
+      padding-bottom: 0.4rem;
+      border-bottom: 3px solid var(--navy);
+      color: var(--navy);
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+    .year-divider:first-of-type { margin-top: 0; }
+    .venue { color: var(--muted); font-style: italic; }
+    .publication-notes { margin: -1rem 0 1.5rem; color: var(--muted); font-size: 0.9rem; }
+    .publication h3 { margin-bottom: 0.35rem; font-size: 1.2rem; }
+    .publication h3 a { color: var(--navy); text-decoration: none; }
+    .publication h3 a:hover, .publication h3 a:focus { color: var(--blue); text-decoration: underline; }
+
+    .outreach-copy { margin-bottom: 1.5rem; }
+
+    .outreach-links {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .outreach-link {
+      display: block;
+      padding: 1.25rem;
+      border: 1px solid #c8dde3;
+      border-radius: 0.8rem;
+      color: var(--navy);
+      background: linear-gradient(145deg, #ffffff, #edf6f8);
+      text-decoration: none;
+      transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .outreach-link:hover,
+    .outreach-link:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 0.8rem 1.8rem rgba(21, 42, 58, 0.1);
+    }
+
+    .outreach-source {
+      display: block;
+      margin-bottom: 0.45rem;
+      color: var(--blue);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .outreach-link-title {
+      color: var(--navy);
+      line-height: 1.4;
+    }
+
+    .outreach-card-heading {
+      display: block;
+      margin-bottom: 0.65rem;
+      color: var(--navy);
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .outreach-campaign,
+    .outreach-event,
+    .community-card {
+      padding: 1.5rem;
+      border: 1px solid #c8dde3;
+      border-radius: 0.8rem;
+      background: linear-gradient(145deg, #ffffff, #edf6f8);
+    }
+
+    .outreach-campaign { margin-top: 2rem; }
+    .outreach-event { margin-top: 2rem; }
+    .community-card { margin-top: 1.5rem; }
+
+    .outreach-campaign h3,
+    .outreach-event h3,
+    .community-card h3 {
+      margin-top: 0;
+      font-weight: 700;
+    }
+
+    .outreach-gallery {
+      display: grid;
+      grid-template-columns: 1fr;
+      margin: 0;
+    }
+
+    .outreach-gallery img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 0.8rem;
+    }
+
+    .scientifica-content {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .scientifica-copy p { margin-top: 0; }
+
+    .community-content {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .community-copy p { margin-top: 0; }
+
+    .community-photo {
+      display: block;
+      width: 100%;
+      margin: 0;
+      border-radius: 0.8rem;
+    }
+
+    .outreach-event-link {
+      color: var(--navy);
+      font-weight: 600;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 2rem 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    footer p { margin: 0; }
+
+    @media (max-width: 900px) {
+      header, main, footer, .header-showcase { width: 100%; }
+      .profile-card {
+        position: static;
+        width: 100%;
+        height: auto;
+        min-height: auto;
+        padding: 2.5rem max(1.25rem, calc((100% - var(--width)) / 2));
+      }
+      .profile-card h2 { white-space: normal; }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links { gap: 0.8rem; }
+      .header-showcase { height: min(55vw, 15rem); }
+      .hero { grid-template-columns: 1fr; gap: 2.5rem; padding: 4rem 0; }
+      .section-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .research-list { grid-template-columns: 1fr; }
+      .research-card.featured { grid-template-columns: 1fr; }
+      .research-card.with-image { grid-template-columns: 1fr; }
+      .project-photo { height: auto; }
+      .outreach-links { grid-template-columns: 1fr; }
+      .outreach-gallery { grid-template-columns: 1fr; }
+      .scientifica-content { grid-template-columns: 1fr; }
+      .community-content { grid-template-columns: 1fr; }
+      .research-gallery { height: auto; }
+      .research-photo { width: 100%; height: auto; aspect-ratio: 4 / 3; }
+    }
+
+    @media (max-width: 480px) {
+      .container { width: min(calc(100% - 1.5rem), var(--width)); }
+      .name { font-size: 1rem; }
+      .nav-links { font-size: 0.85rem; }
+      .publication { grid-template-columns: 1fr; gap: 0.25rem; }
+      footer { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container" aria-label="Main navigation">
+      <a class="name" href="#top">Clara Nussbaumer</a>
+      <ul class="nav-links">
+        <li><a href="#about">About me</a></li>
+        <li><a href="#research">My research</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#outreach">Outreach</a></li>
+        <li><a href="#community">Scientific community</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="top">
+    <div class="header-showcase">
+      <img class="header-photo" src="Photo_Header.jpeg?v=2" alt="Sunlight breaking through clouds above a winding river landscape">
+      <aside class="profile-card" aria-label="Clara Nussbaumer profiles and contact details">
+        <h2>Clara Nussbaumer</h2>
+        <img class="portrait" src="Profile_Pic.jpg" alt="Portrait of Clara Nussbaumer">
+        <p class="profile-role">Atmospheric Chemist</p>
+        <ul class="profile-links">
+          <li><a href="https://usys.ethz.ch/personen/profil.MzUwMDM2.TGlzdC82MzcsMzIwMTk3MjIy.html" target="_blank" rel="noreferrer"><svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18M5 21V9m4 12V9m6 12V9m4 12V9M3 9h18L12 3 3 9Z"/></svg>Postdoc @ ETH Z&uuml;rich</a></li>
+          <li><a href="mailto:clara.nussbaumer@env.ethz.ch"><svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Email</a></li>
+          <li><a href="https://scholar.google.com/citations?user=XT-x5aEAAAAJ&amp;hl=en&amp;oi=ao" target="_blank" rel="noreferrer"><svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m2 9 10-5 10 5-10 5L2 9Z"/><path d="M6 11.5V16c3 2.5 9 2.5 12 0v-4.5M22 9v7"/></svg>Google Scholar</a></li>
+          <li><a href="https://orcid.org/0000-0002-5662-8476" target="_blank" rel="noreferrer"><svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 10v6m0-9v.1M12 16v-6h2a3 3 0 0 1 0 6h-2Z"/></svg>ORCID</a></li>
+          <li><a href="https://www.linkedin.com/in/clara-nussbaumer-9b4686145/" target="_blank" rel="noreferrer"><svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 10v7m0-10v.1M12 17v-7m0 3a3 3 0 0 1 6 0v4"/></svg>LinkedIn</a></li>
+        </ul>
+      </aside>
+    </div>
+    <section id="about">
+      <div class="container section-grid">
+        <div class="section-number">01 &mdash; About me</div>
+        <div>
+          <h2>About me</h2>
+          <p>I am an atmospheric scientist with a particular interest in tropospheric gas-phase photochemistry and the role of nitrogen oxides (NO<sub>x</sub>) and ozone (O<sub>3</sub>). My research investigates how photochemical processes and emissions shape atmospheric composition, with important implications for the oxidizing capacity of the troposphere and the lifetime of greenhouse gases. My work spans a wide range of spatial scales and environments: from local air quality to photochemical processes in the remote upper troposphere.</p>
+          <p>I completed my PhD at the Max Planck Institute for Chemistry in Mainz under the supervision of Dr. Horst Fischer and Prof. Jos Lelieveld. My background is in experimental atmospheric chemistry and airborne measurements of nitrogen oxides. Since October 2024, I have been a postdoctoral researcher in Prof. Colette Heald&rsquo;s group at ETH Z&uuml;rich, where I have expanded my work to include global atmospheric modelling. In October 2026, I will begin a two-year Marie Sk&#322;odowska-Curie Postdoctoral Fellowship at ETH Z&uuml;rich. My project, <a href="https://cordis.europa.eu/project/id/101272680" target="_blank" rel="noreferrer">SHOTGAP</a>, will investigate the processes driving increases in tropospheric ozone across the Southern Hemisphere.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="research">
+      <div class="container section-grid">
+        <div class="section-number">02 &mdash; My research</div>
+        <div>
+          <h2>My research</h2>
+          <p>Below is a selection of research projects I have worked on. For a complete overview of my work, please see my <a href="#publications">publications</a>.</p>
+          <div class="research-list">
+            <article class="research-card with-image">
+              <div class="research-content">
+                <h3>Air quality in Switzerland: Hot days - unhealthy air</h3>
+                <p>Ground-level ozone is a harmful air pollutant associated with adverse health effects and premature mortality. We show that ozone levels in Switzerland are particularly high on hot, sunny days. Although substantial reductions in precursor emissions have improved overall ozone air quality, rising temperatures over recent decades have offset some of these benefits&mdash;a phenomenon known as the climate penalty (<a href="#pub-swiss-ozone">Nussbaumer et al., 2026</a>).</p>
+              </div>
+              <div class="project-visual">
+                <img class="project-photo" src="Figure_AirQuality_no-dates.png?v=2" alt="Clear and hazy views over Zurich illustrating air quality on different days">
+              </div>
+            </article>
+            <article class="research-card featured">
+              <div class="research-gallery">
+                <figure class="research-visual">
+                  <img class="research-photo" src="ResearchPhoto.avif" alt="Clara Nussbaumer working during an atmospheric chemistry field campaign">
+                </figure>
+              </div>
+              <div class="research-content">
+                <h3>Aircraft measurements in the tropical troposphere</h3>
+                <p>I led the nitrogen oxide (NO<sub>x</sub>) measurements during the Chemistry of the Atmosphere Field Experiment campaigns in Brazil (CAFE Brazil, 2022/23) and the Pacific (CAFE Pacific, 2024) aboard the German research aircraft HALO.</p>
+                <p><strong><a href="https://halo-research.de/science/halo-missions/cafe-brazil/" target="_blank" rel="noreferrer">CAFE Brazil.</a></strong> Using observations collected over the Amazon, we showed that NO<sub>x</sub> from lightning controls the mechanism of ozone formation in the upper tropical troposphere (<a href="#pub-ozone-lightning">Nussbaumer et al., 2024</a>).</p>
+                <p><strong><a href="https://halo-research.de/science/halo-missions/cafe-pacific/" target="_blank" rel="noreferrer">CAFE Pacific.</a></strong> Measurements over the Indo-Pacific Warm Pool allowed us to trace exceptionally low ozone to deep convection occurring in the absence of lightning (<a href="#pub-warm-pool">Nussbaumer et al., 2025</a>).</p>
+              </div>
+            </article>
+            <article class="research-card with-image">
+              <div class="research-content">
+                <h3>NO<sub>x</sub> emissions from Los Angeles</h3>
+                <p>During a research stay at UC Berkeley as part of my PhD, I studied NO<sub>x</sub> emissions across Los Angeles using airborne observations from the 2021 RECAP-CA (Re-Evaluating the Chemistry of Air Pollutants in California) campaign. By combining measurements of NO<sub>x</sub> and winds, we derived spatially resolved emission estimates that can help evaluate and improve local emission inventories (<a href="#pub-la-nox">Nussbaumer et al., 2023</a>).</p>
+              </div>
+              <div class="project-visual">
+                <img class="project-photo" src="LosAngeles.jpeg" alt="Los Angeles skyline obscured by atmospheric haze">
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications">
+      <div class="container section-grid">
+        <div class="section-number">03 &mdash; Publications</div>
+        <div>
+          <h2>Publications</h2>
+          <p class="publication-notes">* Corresponding author</p>
+          <div class="year-divider">2026</div>
+          <article class="publication">
+            <div class="year">Aug</div>
+            <div>
+              <h3>gSAM&ndash;Chem: Development and Evaluation of a Large Eddy Simulation with Interactive Chemistry</h3>
+              <p>Yoon, J. Y. S., Thornton, J. A., Blossey, P. N., Khairoutdinov, M. F., Wyant, M. C., Kesselmeier, J., Kim, S., <strong>Nussbaumer, C. M.</strong>, Sarkar, C., Seco, R., Shilling, J., Smith, J. N., Yanez-Serrano, A. M., and Turner, A. J.</p>
+              <p class="venue">Manuscript submitted.</p>
+            </div>
+          </article>
+          <article class="publication">
+            <div class="year">Jul</div>
+            <div>
+              <h3>Peroxyacetyl nitrate (PAN) and peroxyacetic acid (PAA) over mainland and coastal Australia and the Indo-Pacific warm pool</h3>
+              <p>Nelson, C., Andersen, S., Ort, L., <strong>Nussbaumer, C. M.</strong>, Fischer, H., Edtbauer, A., Wang, N., Tripathi, N., Ringsdorf, A., Williams, J., P&ouml;hlker, M., Klimach, T., Lelieveld, J., P&ouml;schl, U., and Crowley, J.</p>
+              <p class="venue">Environmental Science: Atmospheres. Manuscript under review.</p>
+            </div>
+          </article>
+          <article class="publication" id="pub-swiss-ozone">
+            <div class="year">Apr</div>
+            <div>
+              <h3><a href="https://doi.org/10.5194/acp-26-5355-2026">Multi-decadal ozone air quality and the role of temperature in Switzerland during summertime</a></h3>
+              <p><strong>*Nussbaumer, C. M.</strong>, Heald, C. L., H&auml;ne, A. M., and H&uuml;glin, C.</p>
+              <p class="venue">Atmospheric Chemistry and Physics, 26, 5355&ndash;5373, 2026.</p>
+            </div>
+          </article>
+          <div class="year-divider">2025</div>
+          <article class="publication">
+            <div class="year">Sep</div>
+            <div>
+              <h3><a href="https://doi.org/10.5194/acp-25-9885-2025">Changes in global atmospheric oxidant chemistry from land cover conversion</a></h3>
+              <p>Vella, R., Gromov, S., <strong>Nussbaumer, C. M.</strong>, Stecher, L., Kohl, M., Ruhl, S., Tost, H., Lelieveld, J., and Pozzer, A.</p>
+              <p class="venue">Atmospheric Chemistry and Physics, 25, 9885&ndash;9904, 2025.</p>
+            </div>
+          </article>
+          <article class="publication" id="pub-warm-pool">
+            <div class="year">Mar</div>
+            <div>
+              <h3><a href="https://doi.org/10.1029/2024GL112788">Low Tropospheric Ozone Over the Indo-Pacific Warm Pool Related to Non-Electrified Convection</a></h3>
+              <p><strong>*Nussbaumer, C. M.</strong>, Pozzer, A., Hewson, M., Ort, L., Krumm, B., Byron, J., Williams, J., Joppe, P., Obersteiner, F., Zahn, A., Lelieveld, J., and Fischer, H.</p>
+              <p class="venue">Geophysical Research Letters, 52(5), e2024GL112788, 2025.</p>
+            </div>
+          </article>
+          <div class="year-divider">2024</div>
+          <article class="publication">
+            <div class="year">Dec</div>
+            <div>
+              <h3><a href="https://doi.org/10.1038/s41586-024-08192-4">Isoprene nitrates drive new particle formation in Amazon&rsquo;s upper troposphere</a></h3>
+              <p>Curtius, J., Heinritzi, M., Beck, L., P&ouml;hlker, M., Tripathi, N., Krumm, B., Holzbeck, P., <strong>Nussbaumer, C. M.</strong>, Hern&aacute;ndez Pardo, L., Klimach, T., et al.</p>
+              <p class="venue">Nature, 636(8041), 124&ndash;130, 2024.</p>
+            </div>
+          </article>
+          <article class="publication" id="pub-ozone-lightning">
+            <div class="year">Jul</div>
+            <div>
+              <h3><a href="https://doi.org/10.1029/2024JD041168">Ozone formation sensitivity to precursors and lightning in the tropical troposphere based on airborne observations</a></h3>
+              <p><strong>*Nussbaumer, C. M.</strong>, Kohl, M., Pozzer, A., Tadic, I., Rohloff, R., Marno, D., Harder, H., Ziereis, H., Zahn, A., Obersteiner, F., Hofzumahaus, A., Brune, W. H., Ryerson, T. B., Peischl, J., Thompson, C. R., Bourgeois, I., Lelieveld, J., and Fischer, H.</p>
+              <p class="venue">Journal of Geophysical Research: Atmospheres, 129, e2024JD041168, 2024.</p>
+            </div>
+          </article>
+          <div class="year-divider">2023</div>
+          <article class="publication">
+            <div class="year">Nov</div>
+            <div>
+              <h3><a href="https://doi.org/10.1021/acs.est.3c03940">Methane emissions from dairy operations in California&rsquo;s San Joaquin Valley evaluated using airborne flux measurements</a></h3>
+              <p>Schulze, B., Ward, R., Pfannerstill, E., Zhu, Q., Arata, C., Place, B., <strong>Nussbaumer, C. M.</strong>, Wooldridge, P., Woods, R., Bucholtz, A., Cohen, R. C., Goldstein, A., Wennberg, P., and Seinfeld, J.</p>
+              <p class="venue">Environmental Science &amp; Technology, 57(48), 19519&ndash;19531, 2023.</p>
+            </div>
+          </article>
+          <article class="publication" id="pub-la-nox">
+            <div class="year">Oct</div>
+            <div>
+              <h3><a href="https://doi.org/10.5194/acp-23-13015-2023">Measurement report: Airborne measurements of NOx fluxes over Los Angeles during the RECAP-CA 2021 campaign</a></h3>
+              <p><strong>*Nussbaumer, C. M.</strong>, Place, B. K., Zhu, Q., Pfannerstill, E. Y., Wooldridge, P., Schulze, B. C., Arata, C., Ward, R., Bucholtz, A., Seinfeld, J. H., Goldstein, A. H., and Cohen, R. C.</p>
+              <p class="venue">Atmospheric Chemistry and Physics, 23, 13015&ndash;13028, 2023.</p>
+            </div>
+          </article>
+          <article class="publication">
+            <div class="year">Oct</div>
+            <div>
+              <h3><a href="https://doi.org/10.5194/acp-23-12651-2023">What controls ozone sensitivity in the upper tropical troposphere?</a></h3>
+              <p><strong>*Nussbaumer, C. M.</strong>, Fischer, H., Lelieveld, J., and Pozzer, A.</p>
+              <p class="venue">Atmospheric Chemistry and Physics, 23, 12651&ndash;12669, 2023.</p>
+            </div>
+          </article>
+          <article class="publication">
+            <div class="year">Aug</div>
+            <div>
+              <h3><a href="https://doi.org/10.5194/acp-23-9669-2023">Direct observations of NOx emissions over the San Joaquin Valley using airborne flux measurements during RECAP-CA 2021 field campaign</a></h3>
+              <p>Zhu, Q., Place, B., Pfannerstill, E. Y., Tong, S., Zhang, H., Wang, J., <strong>Nussbaumer, C. M.</strong>, Wooldridge, P., Schulze, B. C., Arata, C., Bucholtz, A., Seinfeld, J. H., Goldstein, A. H., and Cohen, R. C.</p>
+              <p class="venue">Atmospheric Chemistry and Physics, 23, 9669&ndash;9683, 2023.</p>
+            </div>
+          </article>
+          <article class="publication">
+            <div class="year">Jul</div>
+            <div>
+              <h3><a href="https://doi.org/10.25358/openscience-9272">Nitrogen oxides and their involvement in photochemical processes throughout the troposphere</a></h3>
+              <p><strong>*Nussbaumer, C. M.</strong></p>
+              <p class="venue">Doctoral dissertation, Universit&auml;tsbibliothek Mainz, 2023.</p>
+            </div>
+          </article>
+          <article class="publication">
+            <div class="year">Mar</div>
+            <div>
+              <h3><a href="https://doi.org/10.5194/amt-16-1167-2023">Data quality enhancement for field experiments in atmospheric chemistry via sequential Monte Carlo filters</a></h3>
+              <p>R&ouml;der, L. L., Dewald, P., <strong>Nussbaumer, C. M.</strong>, Schuladen, J., Crowley, J. N., Lelieveld, J., and Fischer, H.</p>
+              <p class="venue">Atmospheric Measurement Techniques, 16, 1167&ndash;1178, 2023.</p>
+            </div>
+          </article>
+          <div class="year-divider">2022</div>
+          <article class="publication">
+            <div class="year">Jun</div>
+            <div>
+              <h3><a href="https://doi.org/10.5194/acp-22-7051-2022">Fate of the nitrate radical at the summit of a semi-rural mountain site in Germany assessed with direct reactivity measurements</a></h3>
+              <p>Dewald, P., <strong>Nussbaumer, C. M.</strong>, Schuladen, J., Ringsdorf, A., Edtbauer, A., Fischer, H., Williams, J., Lelieveld, J., and Crowley, J. N.</p>
+              <p class="venue">Atmospheric Chemistry and Physics, 22, 7051&ndash;7069, 2022.</p>
+            </div>
+          </article>
+          <article class="publication">
+            <div class="year">May</div>
+            <div>
+              <h3><a href="https://doi.org/10.5194/acp-22-6151-2022">Tropospheric ozone production and chemical regime analysis during the COVID-19 lockdown over Europe</a></h3>
+              <p><strong>*Nussbaumer, C. M.</strong>, Pozzer, A., Tadic, I., R&ouml;der, L., Obersteiner, F., Harder, H., Lelieveld, J., and Fischer, H.</p>
+              <p class="venue">Atmospheric Chemistry and Physics, 22, 6151&ndash;6165, 2022.</p>
+            </div>
+          </article>
+          <div class="year-divider">2021</div>
+          <article class="publication">
+            <div class="year">Dec</div>
+            <div>
+              <h3><a href="https://doi.org/10.5194/acp-21-18413-2021">Measurement report: Photochemical production and loss rates of formaldehyde and ozone across Europe</a></h3>
+              <p><strong>*Nussbaumer, C. M.</strong>, Crowley, J. N., Schuladen, J., Williams, J., Hafermann, S., Reiffs, A., Axinte, R., Harder, H., Ernest, C., Novelli, A., Sala, K., Martinez, M., Mallik, C., Tomsche, L., Plass-D&uuml;lmer, C., Bohn, B., Lelieveld, J., and Fischer, H.</p>
+              <p class="venue">Atmospheric Chemistry and Physics, 21, 18413&ndash;18432, 2021.</p>
+            </div>
+          </article>
+          <article class="publication">
+            <div class="year">Oct</div>
+            <div>
+              <h3><a href="https://doi.org/10.5194/amt-14-6759-2021">Modification of a conventional photolytic converter for improving aircraft measurements of NO2 via chemiluminescence</a></h3>
+              <p><strong>*Nussbaumer, C. M.</strong>, Parchatka, U., Tadic, I., Bohn, B., Marno, D., Martinez, M., Rohloff, R., Harder, H., Kluge, F., Pfeilsticker, K., Obersteiner, F., Z&ouml;ger, M., Doerich, R., Crowley, J. N., Lelieveld, J., and Fischer, H.</p>
+              <p class="venue">Atmospheric Measurement Techniques, 14, 6759&ndash;6776, 2021.</p>
+            </div>
+          </article>
+          <article class="publication">
+            <div class="year">May</div>
+            <div>
+              <h3><a href="https://doi.org/10.5194/acp-21-8195-2021">Central role of nitric oxide in ozone production in the upper tropical troposphere over the Atlantic Ocean and western Africa</a></h3>
+              <p>Tadic, I., <strong>Nussbaumer, C. M.</strong>, Bohn, B., Harder, H., Marno, D., Martinez, M., Obersteiner, F., Parchatka, U., Pozzer, A., Rohloff, R., Z&ouml;ger, M., Lelieveld, J., and Fischer, H.</p>
+              <p class="venue">Atmospheric Chemistry and Physics, 21, 8195&ndash;8211, 2021.</p>
+            </div>
+          </article>
+          <article class="publication">
+            <div class="year">May</div>
+            <div>
+              <h3><a href="https://doi.org/10.5194/acp-21-7933-2021">Measurement report: In situ observations of deep convection without lightning during the tropical cyclone Florence 2018</a></h3>
+              <p><strong>*Nussbaumer, C. M.</strong>, Tadic, I., Dienhart, D., Wang, N., Edtbauer, A., Ernle, L., Williams, J., Obersteiner, F., Guti&eacute;rrez-Alvarez, I., Harder, H., Lelieveld, J., and Fischer, H.</p>
+              <p class="venue">Atmospheric Chemistry and Physics, 21, 7933&ndash;7945, 2021.</p>
+            </div>
+          </article>
+          <article class="publication">
+            <div class="year">Mar</div>
+            <div>
+              <h3><a href="https://doi.org/10.1021/acs.est.0c07144">Impact of OA on the Temperature Dependence of PM2.5 in the Los Angeles Basin</a></h3>
+              <p><strong>Nussbaumer, C. M.</strong> and Cohen, R. C.</p>
+              <p class="venue">Environmental Science &amp; Technology, 55(6), 3549&ndash;3558, 2021.</p>
+            </div>
+          </article>
+          <div class="year-divider">2020</div>
+          <article class="publication">
+            <div class="year">Dec</div>
+            <div>
+              <h3><a href="https://doi.org/10.1021/acs.est.0c04910">The Role of Temperature and NOx in Ozone Trends in the Los Angeles Basin</a></h3>
+              <p><strong>Nussbaumer, C. M.</strong> and Cohen, R. C.</p>
+              <p class="venue">Environmental Science &amp; Technology, 54(24), 15652&ndash;15659, 2020.</p>
+            </div>
+          </article>
+          <article class="publication">
+            <div class="year">Mar</div>
+            <div>
+              <h3><a href="https://doi.org/10.1002/cssc.202000462">A Family of Water-Immiscible, Dipolar, Aprotic, Diamide Solvents from Succinic Acid</a></h3>
+              <p>Byrne, F. P., <strong>Nussbaumer, C. M.</strong>, Savin, E. J., Milescu, R. A., McElroy, C. R., Clark, J. H., van Vugt-Lussenburg, B. M. A., van der Burg, B., Meima, M. Y., Buist, H. E., Kroese, E. D., Hunt, A. J., and Farmer, T. J.</p>
+              <p class="venue">ChemSusChem, 13, 3212&ndash;3221, 2020.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="outreach">
+      <div class="container section-grid">
+        <div class="section-number">04 &mdash; Outreach</div>
+        <div>
+          <h2>Outreach</h2>
+          <p>For me, outreach is an important part of being a scientist, and I hope to contribute to bridging the gap between academia and the public.</p>
+          <div class="outreach-event">
+            <h3>Scientifica 2026</h3>
+            <div class="scientifica-content">
+              <div class="outreach-gallery">
+                <img src="Scientifica.jpeg" alt="Clara Nussbaumer presenting at Scientifica 2026" loading="lazy">
+              </div>
+              <div class="scientifica-copy">
+                <p>Together with my colleague Max, I co-organised an interactive atmospheric chemistry booth at Scientifica, Zurich&rsquo;s science festival, where we introduced visitors to atmospheric chemistry and explored how it affects the air they breathe and their daily lives.</p>
+                <span class="outreach-source">Exhibition &middot; Scientifica 2026</span>
+                <a class="outreach-event-link" href="https://scientifica.ch/en/ausstellungen/every-breath-we-take-exploring-the-chemistry-of-our-air/" target="_blank" rel="noreferrer">Every breath we take: Exploring the chemistry of our air &nearr;</a>
+              </div>
+            </div>
+          </div>
+          <div class="outreach-campaign">
+            <div class="outreach-copy">
+              <h3>CAFE Pacific 2024</h3>
+              <p>During the CAFE Pacific campaign, I contributed to media coverage of our atmospheric chemistry research.</p>
+            </div>
+            <div class="outreach-links" aria-label="Related CAFE Pacific media coverage">
+              <div class="outreach-link">
+                <span class="outreach-source">Article &middot; ABC Far North</span>
+                <span class="outreach-card-heading">German scientists measuring cloud chemistry above Australia and Pacific in flying HALO laboratory</span>
+                <a class="outreach-event-link" href="https://www.abc.net.au/news/2024-02-25/cloud-chemistry-research-german-scientists-halo-flying-lab/103505836" target="_blank" rel="noreferrer">Watch the clip &nearr;</a>
+              </div>
+              <div class="outreach-link">
+                <span class="outreach-source">Radio interview &middot; SBS German</span>
+                <span class="outreach-card-heading">Klimaforschung &uuml;ber dem Regenwald Australiens</span>
+                <a class="outreach-event-link" href="https://www.sbs.com.au/language/german/de/podcast-episode/klimaforschung-uber-dem-regenwald-austral/322oreaen" target="_blank" rel="noreferrer">Listen to the interview &nearr;</a>
+              </div>
+              <div class="outreach-link">
+                <span class="outreach-source">Live TV interview &middot; ABC News Breakfast</span>
+                <span class="outreach-link-title">Discussing atmospheric chemistry and the CAFE Pacific research campaign</span>
+              </div>
+              <div class="outreach-link">
+                <span class="outreach-source">Live radio interview &middot; ABC Radio Queensland</span>
+                <span class="outreach-link-title">Discussing atmospheric chemistry and the CAFE Pacific research campaign</span>
+              </div>
+            </div>
+          </div>
+          <div class="outreach-event">
+            <h3>KLUGER Transfer 2023</h3>
+            <p>At the <a href="https://kluger-transfer.de/" target="_blank" rel="noreferrer">KLUGER</a> (Klima&ndash;Umwelt&ndash;Gesundheit; Climate&ndash;Environment&ndash;Health) Transfer 2023, I gave a public talk on ozone formation in cities and took part in a panel discussion. The KLUGER Tandem Talks bring together basic and applied research to foster exchange across disciplines.</p>
+            <span class="outreach-source">Talk and panel discussion &middot; in German</span>
+            <a class="outreach-event-link" href="https://keeper.mpdl.mpg.de/f/92b6dcaf9298478ab4d1/" target="_blank" rel="noreferrer">Watch the recording &nearr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="community">
+      <div class="container section-grid">
+        <div class="section-number">05 &mdash; Scientific community</div>
+        <div>
+          <h2>Scientific community</h2>
+          <p>Activities that bring researchers together and foster exchange within the scientific community.</p>
+          <div class="community-card">
+            <h3>Atmospheric Chemistry Poster Day @ ETH 2026</h3>
+            <div class="community-content">
+              <img class="community-photo" src="PosterDay.jpeg" alt="Participants at the Swiss Atmospheric Chemistry Poster Day at ETH Z&uuml;rich in 2026" loading="lazy">
+              <div class="community-copy">
+                <p>Together with my colleague Flossie, I co-organised the first Swiss Atmospheric Chemistry Poster Day at ETH Z&uuml;rich in May 2026 to foster exchange among atmospheric chemists across Switzerland. The event brought together more than 70 participants from 12 institutions. We look forward to continuing the event in 2027.</p>
+                <a class="outreach-event-link" href="https://iac.ethz.ch/group/atmospheric-chemistry/swiss-atmospheric-chemistry-day.html" target="_blank" rel="noreferrer">Learn more &nearr;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    <p>&copy; <span id="year"></span> Clara Nussbaumer</p>
+    <p><a href="https://github.com/claranussbaumer">GitHub</a></p>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
