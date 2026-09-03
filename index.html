@@ -553,6 +553,14 @@
 
     @media (max-width: 900px) {
       header, main, footer, .header-showcase { width: 100%; }
+      .header-showcase {
+        height: auto;
+        overflow: visible;
+      }
+      .header-photo {
+        height: clamp(15rem, 35vw, 23rem);
+        object-fit: cover;
+      }
       .profile-card {
         position: static;
         width: 100%;
@@ -564,26 +572,73 @@
     }
 
     @media (max-width: 720px) {
-      .nav-links { gap: 0.8rem; }
-      .header-showcase { height: min(55vw, 15rem); }
+      header { position: sticky; }
+      nav {
+        min-height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.7rem;
+        padding: 0.85rem 0;
+      }
+      .name { font-size: 1.1rem; }
+      .nav-links {
+        width: 100%;
+        flex-wrap: wrap;
+        column-gap: 1rem;
+        row-gap: 0.5rem;
+      }
+      .nav-links a { font-size: 0.85rem; }
+      .header-photo { height: min(55vw, 15rem); }
+      .profile-card { padding: 2rem 1.25rem; }
+      .profile-card .portrait { width: min(8rem, 45%); }
+      .profile-card h2 { margin-bottom: 1rem; font-size: 2rem; }
+      .profile-role { margin-bottom: 1rem; }
       .hero { grid-template-columns: 1fr; gap: 2.5rem; padding: 4rem 0; }
+      section { padding: 4.5rem 0; }
       .section-grid { grid-template-columns: 1fr; gap: 1.5rem; }
       .research-list { grid-template-columns: 1fr; }
-      .research-card.featured { grid-template-columns: 1fr; }
-      .research-card.with-image { grid-template-columns: 1fr; }
-      .project-photo { height: auto; }
+      .research-card.featured,
+      .research-card.with-image {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1.25rem;
+        border: 1px solid #c8dde3;
+        border-radius: 0.8rem;
+        background: linear-gradient(145deg, #ffffff, #edf6f8);
+      }
+      .research-card.featured .research-content,
+      .research-card.with-image .research-content {
+        order: 1;
+        padding: 0;
+        border: 0;
+        background: transparent;
+      }
+      .research-card.featured .research-gallery,
+      .research-card.with-image .project-visual {
+        order: 2;
+        width: min(100%, 22rem);
+        height: auto;
+        margin: 0 auto;
+      }
+      .project-photo,
+      .research-photo {
+        height: auto;
+        max-height: 14rem;
+        object-fit: contain;
+      }
       .outreach-links { grid-template-columns: 1fr; }
       .outreach-gallery { grid-template-columns: 1fr; }
       .scientifica-content { grid-template-columns: 1fr; }
       .community-content { grid-template-columns: 1fr; }
       .research-gallery { height: auto; }
-      .research-photo { width: 100%; height: auto; aspect-ratio: 4 / 3; }
+      .research-photo { width: 100%; aspect-ratio: auto; }
     }
 
     @media (max-width: 480px) {
       .container { width: min(calc(100% - 1.5rem), var(--width)); }
       .name { font-size: 1rem; }
-      .nav-links { font-size: 0.85rem; }
+      .nav-links a { font-size: 0.8rem; }
       .publication { grid-template-columns: 1fr; gap: 0.25rem; }
       footer { flex-direction: column; }
     }
@@ -943,7 +998,7 @@
   </main>
 
   <footer class="container">
-    <p>&copy; <span id="year"></span> Clara Nussbaumer</p>
+    <p>&copy; <span id="year"></span> Clara Nussbaumer. All rights reserved.</p>
     <p><a href="https://github.com/claranussbaumer">GitHub</a></p>
   </footer>
 
