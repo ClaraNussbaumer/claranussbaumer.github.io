@@ -370,6 +370,13 @@
       overflow: visible;
     }
 
+    .research-card.with-image.image-left {
+      grid-template-columns: minmax(12rem, 18rem) minmax(0, 1fr);
+    }
+
+    .research-card.with-image.image-left .project-visual { grid-column: 1; }
+    .research-card.with-image.image-left .research-content { grid-column: 2; }
+
     .research-card.text-project {
       grid-column: 1 / -1;
     }
@@ -387,6 +394,23 @@
       overflow: hidden;
       border-radius: 0.8rem;
     }
+
+    figure.project-visual { margin: 0; }
+
+    .project-visual.co-visual {
+      overflow: visible;
+      border-radius: 0;
+    }
+
+    .figure-caption {
+      margin: 0.45rem 0 0;
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1.35;
+    }
+
+    .figure-caption a { color: inherit; }
+    .figure-caption a:hover, .figure-caption a:focus { color: var(--blue); }
 
     .project-links {
       display: grid;
@@ -422,6 +446,8 @@
     }
     .year-divider:first-of-type { margin-top: 0; }
     .venue { color: var(--muted); font-style: italic; }
+    .venue a { color: inherit; }
+    .venue a:hover, .venue a:focus { color: var(--blue); }
     .publication-notes { margin: -1rem 0 1.5rem; color: var(--muted); font-size: 0.9rem; }
     .publication h3 { margin-bottom: 0.35rem; font-size: 1.2rem; }
     .publication h3 a { color: var(--navy); text-decoration: none; }
@@ -692,6 +718,16 @@
           <h2>My research</h2>
           <p>Below is a selection of research projects I have worked on. For a complete overview of my work, please see my <a href="#publications">publications</a>.</p>
           <div class="research-list">
+            <article class="research-card with-image image-left">
+              <figure class="project-visual co-visual">
+                <img class="project-photo" src="CO_sketch.png" alt="Illustration of factors contributing to increasing carbon monoxide in the remote Southern Hemisphere">
+                <figcaption class="figure-caption">Source: <a href="https://doi.org/10.5194/egusphere-2026-5476">Nussbaumer et al. (2026)</a></figcaption>
+              </figure>
+              <div class="research-content">
+                <h3>CO in the remote Southern Hemisphere</h3>
+                <p>Carbon monoxide (CO) is closely linked to the oxidizing capacity of the troposphere and the lifetime of methane (CH<sub>4</sub>), a potent greenhouse gas. Using a global model, we find that CO has increased in the remote Southern Hemisphere since 2008, driven by rising methane, biogenic non-methane volatile organic compounds (NMVOCs), and temperature. Available observations are inconsistent, highlighting the continuous need for more frequent and accurate measurements at these latitudes (<a href="https://doi.org/10.5194/egusphere-2026-5476">Nussbaumer et al., 2026</a>).</p>
+              </div>
+            </article>
             <article class="research-card with-image">
               <div class="research-content">
                 <h3>Air quality in Switzerland: Hot days - unhealthy air</h3>
@@ -735,6 +771,22 @@
           <h2>Publications</h2>
           <p class="publication-notes">* Corresponding author</p>
           <div class="year-divider">2026</div>
+          <article class="publication">
+            <div class="year">Sep</div>
+            <div>
+              <h3><a href="https://doi.org/10.5194/egusphere-2026-5476">What controls tropospheric carbon monoxide in the remote Southern Hemisphere?</a></h3>
+              <p><strong>*Nussbaumer, C. M.</strong>, Heald, C. L., Campos, T., Kort, E. A., Krummel, P. B., Langenfelds, R. L., Madronich, M., McKain, K., P&eacute;tron, G., Stavert, A., and Wofsy, S. C.</p>
+              <p class="venue">EGUsphere [preprint]. Manuscript under review.</p>
+            </div>
+          </article>
+          <article class="publication">
+            <div class="year">Sep</div>
+            <div>
+              <h3>Convective transport amplifies tropical upper-tropospheric oxidation through VOC-NO synergy</h3>
+              <p>Tripathi, N., Pozzer, A., Sander, R., Gromov, S., Krumm, B., Wang, N., Edtbauer, A., Ringsdorf, A., <strong>Nussbaumer, C. M.</strong>, Holzbeck, P., Byron, J., Hartmann, A., Ort, L., Obersteiner, F., Harder, H., Fischer, H., Curtius, J., Lelieveld, J., and Williams, J.</p>
+              <p class="venue">Environmental Science &amp; Technology. Manuscript submitted.</p>
+            </div>
+          </article>
           <article class="publication">
             <div class="year">Aug</div>
             <div>
@@ -1004,6 +1056,22 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.querySelectorAll('.publication h3 a[href^="https://doi.org/"]').forEach((titleLink) => {
+      const publication = titleLink.closest('.publication');
+      const venue = publication.querySelector('.venue');
+      const doi = new URL(titleLink.href).pathname.slice(1);
+
+      venue.insertAdjacentHTML(
+        'beforeend',
+        ` &middot; <a href="${titleLink.href}">DOI: ${doi}</a>`
+      );
+    });
+
+    document.querySelectorAll('a[href^="http"]').forEach((link) => {
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+    });
   </script>
 </body>
 </html>
