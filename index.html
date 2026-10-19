@@ -473,6 +473,15 @@
       transition: transform 160ms ease, box-shadow 160ms ease;
     }
 
+    .outreach-media-image {
+      display: block;
+      width: 100%;
+      height: 10rem;
+      margin-bottom: 1rem;
+      border-radius: 0.55rem;
+      object-fit: cover;
+    }
+
     .outreach-link:hover,
     .outreach-link:focus-visible {
       transform: translateY(-2px);
@@ -565,6 +574,8 @@
       color: var(--navy);
       font-weight: 600;
     }
+
+    .factsheet-link-row { margin-top: 0.65rem; }
 
     footer {
       display: flex;
@@ -706,7 +717,7 @@
         <div>
           <h2>About me</h2>
           <p>I am an atmospheric scientist with a particular interest in tropospheric gas-phase photochemistry and the role of nitrogen oxides (NO<sub>x</sub>) and ozone (O<sub>3</sub>). My research investigates how photochemical processes and emissions shape atmospheric composition, with important implications for the oxidizing capacity of the troposphere and the lifetime of greenhouse gases. My work spans a wide range of spatial scales and environments: from local air quality to photochemical processes in the remote upper troposphere.</p>
-          <p>I completed my PhD at the Max Planck Institute for Chemistry in Mainz under the supervision of Dr. Horst Fischer and Prof. Jos Lelieveld. My background is in experimental atmospheric chemistry and airborne measurements of nitrogen oxides. Since October 2024, I have been a postdoctoral researcher in Prof. Colette Heald&rsquo;s group at ETH Z&uuml;rich, where I have expanded my work to include global atmospheric modelling. In October 2026, I will begin a two-year Marie Sk&#322;odowska-Curie Postdoctoral Fellowship at ETH Z&uuml;rich. My project, <a href="https://cordis.europa.eu/project/id/101272680" target="_blank" rel="noreferrer">SHOTGAP</a>, will investigate the processes driving increases in tropospheric ozone across the Southern Hemisphere.</p>
+          <p>I completed my PhD at the Max Planck Institute for Chemistry in Mainz under the supervision of Dr. Horst Fischer and Prof. Jos Lelieveld. My background is in experimental atmospheric chemistry and airborne measurements of nitrogen oxides. Since October 2024, I have been a postdoctoral researcher in Prof. Colette Heald&rsquo;s group at ETH Z&uuml;rich, where I have expanded my work to include global atmospheric modelling. Since October 2026, I have been a Marie Sk&#322;odowska-Curie Postdoctoral Fellow at ETH Z&uuml;rich. My project, <a href="https://cordis.europa.eu/project/id/101272680" target="_blank" rel="noreferrer">SHOTGAP</a>, investigates processes contributing to increasing tropospheric ozone in the Southern Hemisphere.</p>
         </div>
       </div>
     </section>
@@ -772,6 +783,14 @@
           <p class="publication-notes">* Corresponding author</p>
           <div class="year-divider">2026</div>
           <article class="publication">
+            <div class="year">Oct</div>
+            <div>
+              <h3><a href="https://doi.org/10.1039/d6ea00115g">Peroxyacetyl nitrate (PAN) and peroxyacetic acid (PAA) over mainland and coastal Australia and the Indo-Pacific warm pool</a></h3>
+              <p>Nelson, C., Andersen, S., Ort, L., <strong>Nussbaumer, C. M.</strong>, Fischer, H., Edtbauer, A., Wang, N., Tripathi, N., Ringsdorf, A., Williams, J., P&ouml;hlker, M., Klimach, T., Lelieveld, J., P&ouml;schl, U., and Crowley, J. N.</p>
+              <p class="venue">Environmental Science: Atmospheres, 2026.</p>
+            </div>
+          </article>
+          <article class="publication">
             <div class="year">Sep</div>
             <div>
               <h3><a href="https://doi.org/10.5194/egusphere-2026-5476">What controls tropospheric carbon monoxide in the remote Southern Hemisphere?</a></h3>
@@ -798,9 +817,9 @@
           <article class="publication">
             <div class="year">Jul</div>
             <div>
-              <h3>Peroxyacetyl nitrate (PAN) and peroxyacetic acid (PAA) over mainland and coastal Australia and the Indo-Pacific warm pool</h3>
-              <p>Nelson, C., Andersen, S., Ort, L., <strong>Nussbaumer, C. M.</strong>, Fischer, H., Edtbauer, A., Wang, N., Tripathi, N., Ringsdorf, A., Williams, J., P&ouml;hlker, M., Klimach, T., Lelieveld, J., P&ouml;schl, U., and Crowley, J.</p>
-              <p class="venue">Environmental Science: Atmospheres. Manuscript under review.</p>
+              <h3><a href="https://doi.org/10.5281/zenodo.21060689">Ozone &ndash; A simple molecule with enduring impact on climate, air quality and health</a></h3>
+              <p>Klausen, J., Eeftens, M., Egli, L., Gilgen, A., Maillard-Barras, E., <strong>Nussbaumer, C. M.</strong>, R&uuml;fenacht, R., Schleppi, P., and Steinbacher, M.</p>
+              <p class="venue">Swiss Academies Factsheets, 21(2). Akademie der Naturwissenschaften Schweiz (SCNAT), Bern.</p>
             </div>
           </article>
           <article class="publication" id="pub-swiss-ozone">
@@ -980,6 +999,13 @@
           <h2>Outreach</h2>
           <p>For me, outreach is an important part of being a scientist, and I hope to contribute to bridging the gap between academia and the public.</p>
           <div class="outreach-event">
+            <h3>100 years of ozone measurements in Switzerland</h3>
+            <p>Marking 100 years of ozone column measurements in Davos, I co-authored a factsheet that introduces the principles of ozone formation and its roles in different parts of the atmosphere.</p>
+            <span class="outreach-source">Swiss Academies Factsheets &middot; 2026</span>
+            <a class="outreach-event-link" href="https://www.meteoswiss.admin.ch/climate/the-climate-of-switzerland/monitoring-the-atmosphere/ozone-monitoring/celebration-of-100-years-of-zone-measurements.html" target="_blank" rel="noreferrer">Read more about the anniversary celebration &nearr;</a>
+            <div class="factsheet-link-row"><a class="outreach-event-link" href="https://doi.org/10.5281/zenodo.21060689" target="_blank" rel="noreferrer">Read the factsheet &nearr;</a></div>
+          </div>
+          <div class="outreach-event">
             <h3>Scientifica 2026</h3>
             <div class="scientifica-content">
               <div class="outreach-gallery">
@@ -1009,10 +1035,12 @@
                 <a class="outreach-event-link" href="https://www.sbs.com.au/language/german/de/podcast-episode/klimaforschung-uber-dem-regenwald-austral/322oreaen" target="_blank" rel="noreferrer">Listen to the interview &nearr;</a>
               </div>
               <div class="outreach-link">
+                <img class="outreach-media-image" src="ABC_Live_interview.jpeg" alt="Clara Nussbaumer during a live ABC News Breakfast interview" loading="lazy">
                 <span class="outreach-source">Live TV interview &middot; ABC News Breakfast</span>
                 <span class="outreach-link-title">Discussing atmospheric chemistry and the CAFE Pacific research campaign</span>
               </div>
               <div class="outreach-link">
+                <img class="outreach-media-image" src="ABC_Radio_interview.jpeg" alt="Clara Nussbaumer during a live ABC Radio Queensland interview" loading="lazy">
                 <span class="outreach-source">Live radio interview &middot; ABC Radio Queensland</span>
                 <span class="outreach-link-title">Discussing atmospheric chemistry and the CAFE Pacific research campaign</span>
               </div>
